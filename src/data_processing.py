@@ -3,6 +3,8 @@ import numpy as np
 from sklearn.experimental import enable_iterative_imputer
 from sklearn.impute import IterativeImputer
 
+# This is where we start the data cleaning. First functions are for the NHC hurdat file.
+
 def convert_lat_lon(value):
     """Convert latitude and longitude values to float."""
     if 'N' in value or 'E' in value:
@@ -38,7 +40,7 @@ def process_cyclone_data(cyclone_data):
         df = pd.DataFrame(cyclone['data'], columns=['Date', 'Time', 'Record', 'Status', 'Latitude', 'Longitude', 'WindSpeed', 'Pressure',
                                                     'Rad_34_NE', 'Rad_34_SE', 'Rad_34_SW', 'Rad_34_NW', 'Rad_50_NE', 'Rad_50_SE',
                                                     'Rad_50_SW', 'Rad_50_NW', 'Rad_64_NE', 'Rad_64_SE', 'Rad_64_SW', 'Rad_64_NW', 'maxwnd'])
-        # Convert data types where necessary
+        # Convert data types
         df['Date'] = df['Date'].astype(str)
         df['Time'] = df['Time'].astype(str)
         df['Latitude'] = df['Latitude'].apply(convert_lat_lon)
@@ -58,14 +60,12 @@ def concatenate_cyclone_data(all_cyclone_dfs):
 
 def filter_and_process_data(df, min_lat, max_lat, min_lon, max_lon):
     """Filter data by lat/lon, assign status priority, and extract year."""
-    # Filter the data
     
     df = df[(df['Latitude'] >= min_lat) & (df['Latitude'] <= max_lat) &
                        (df['Longitude'] >= min_lon) & (df['Longitude'] <= max_lon)]
     
     filtered_data = df.copy()
     
-    # Assign status priority
     priority_order = {'HU': 1, 'TS': 2, 'TD': 3}
     filtered_data['StatusPriority'] = filtered_data['Status'].map(priority_order).fillna(4)
     
@@ -113,14 +113,13 @@ def merge_hurricane_amo(hu_binary, hu_trend, amo_data):
 
 def process_slp_data(file_path, columns, drop_columns, months, replace_value, rename_column):
     """Process the data to prepare for merge."""
-    # Read and initial processing
     data = pd.read_csv(file_path, delim_whitespace=True, names=columns)
     data = data[1:].drop(columns=drop_columns)
     
     # Convert specified columns to float
     data[months[-2:]] = data[months[-2:]].astype(float)
     
-    # Replace specified values and forward fill missing data
+    # Replace -999.9 values and forward fill missing data
     data.replace(replace_value, pd.NA, inplace=True)
     data.ffill(inplace=True)
     

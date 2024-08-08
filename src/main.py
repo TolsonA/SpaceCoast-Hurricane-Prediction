@@ -9,6 +9,7 @@ from modeling import (
 
 import pandas as pd
 import joblib
+"""As long as your file paths are good it should run with updated information"""
 
 if __name__ == "__main__":
 
