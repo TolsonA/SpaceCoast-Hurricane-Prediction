@@ -1,10 +1,10 @@
-from joblib import load
+import joblib
 import pandas as pd
 import streamlit as st
 import numpy as np
 
-reg_model = load('models/initial_regression_model.joblib')
-rf_model = load('models/rf_model.joblib')
+reg_model = joblib.load('models/initial_regression_model.joblib')
+rf_model = joblib.load('models/rf_model.joblib')
 
 st.markdown(
     """
