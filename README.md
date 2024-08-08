@@ -12,7 +12,7 @@
 
 ## Hypothesis
 
-- When Atlantic Multidecadal Oscillation (AMO) is above OR below average, we will see an increase or decrease in Hurricanes per year.
+- Alternate: When Atlantic Multidecadal Oscillation (AMO) is above OR below average, we will see an increase or decrease in Hurricanes per year.
 
 - NULL: There is no difference in hurricane likelihood with AMO anomalies.
 
@@ -20,7 +20,25 @@
 
 - Model prediction is for hurricanes already developed. It will give a likelihood if hurricanes will hit our area.
 
-- Decision matrix is for leadership to determine actions to take based on historical data.
+- NULL hypothesis: The sea level pressure stations and AMO have no effect on hurricanes.
+
+- Alternate hypothesis: higher AMO anomalies and lower sea level pressure increases the chance for hurricanes to impact our area.
+
+## Data Cleaning
+
+- References/Sources are at the end of this readme.
+
+- The hurdat file is from NHC and contains all tropical cyclone information from the 1850s to 2022.
+
+- The hurdat file goes through numerous functions to clean lat/long, adjust headers, and compile into a single dataframe. From that dataframe we filter it further to be for a specific lat/long, which is a large box around Cape Canaveral. You could change this to any lat/long and it would still run just fine.
+
+- After filtering, I apply a status prioirity and then pull unique cyclones that equal a hurricane status. You could take the filtered data and do other types of analysis if you like.
+
+- Then we pull in the AMO data and combine it with hurricanes, which let's you make a polynomial regression if you want. I recommend you do from 1950 to 2022 for this one.
+
+- Next we filter the hurricanes to only show if they occurred 1 or 0 for each year along with the AMO numbers. This is how we build the first logistic regression model.
+
+- The random forest model uses the sea level pressure stations, AMO, and hurricanes binary form. The sea level pressure data needed a lot of help and I used an imputter to fill data from 2005 to 2022.
 
 ## Area of Interest
 
@@ -98,12 +116,20 @@
 - Hurricane track from SSW to West. Likely Oct
   - Lower threat, evacuation not recommended.
 
-## Atlantic Basin
+## Streamlit
 
-- This image represents the area considered the Atlantic Basin. The unfiltered data is tracking tropical cyclone development in this area.
+- The file app.py in src directory contains the streamlit code.
 
-- Image from NHC.NOAA.GOV
+## References/Sources
 
-![alt text](Images/Atlantic_Basin.png)
+- The hurdat file is at <https://www.nhc.noaa.gov/data/>
 
-## Data Cleaning
+- The AMO data is at <https://psl.noaa.gov/data/timeseries/AMO/> and choose AMO unsmooth, long.
+
+- The sea level pressure stations were a little tricky. Navigate to this site <https://www.metoffice.gov.uk/hadobs/hadslp2/> and then you will need to download the HADSLP2 data, which has a ton of sites. You want to find the ones that match the files in the data directory.
+
+- The AMM_sst is at <https://psl.noaa.gov/data/timeseries/monthly/AMM/>.
+
+- The TNA_sst is at <https://psl.noaa.gov/data/climateindices/list/> and you just click on TNA.
+
+- The rh_mdr you need to use what I have. I don't remember exactly how I got it at them moment.

@@ -21,6 +21,9 @@ st.markdown(
         font-size:20px !important;
         color: #4BFFFF;
     }
+    .medium-font2 {
+        font-size:30px !important;
+        color: #FF0000}
     </style>
     """,
     unsafe_allow_html=True
@@ -30,13 +33,13 @@ if __name__ == "__main__":
     
   def intro():
 
-      st.write("# SLD 45 Hurricane Prediction!")
-      st.sidebar.success("Select a page above.")
+    st.write("# SLD 45 Hurricane Prediction!")
+    st.sidebar.success("Select a page above.")
 
-      st.markdown('<p class="medium-font">Provide analysis of hurricane trends over time and \
+    st.markdown('<p class="medium-font">Provide analysis of hurricane trends over time and \
                   prediction of future hurricanes.</p?', unsafe_allow_html=True)
-
-      st.image('Images/Area_pic.png', caption='Area of Interest', use_column_width=True)
+    st.markdown('Presentation by Andrew Tolson')
+    st.image('Images/Area_pic.png', caption='Area of Interest', use_column_width=True)
 
   def model_demo():
 
@@ -64,7 +67,7 @@ if __name__ == "__main__":
         
     st.markdown(f'<p class="medium-font">Probability of getting a hurricane: {percentage:.2f}%</p?', unsafe_allow_html=True)
     
-    st.markdown('<p class="big-font">Hurricane Likelihood based Sea Level Pressure Model</p?', unsafe_allow_html=True)
+    st.markdown('<p class="big-font">Hurricane Likelihood based on Sea Level Pressure/AMO Model</p?', unsafe_allow_html=True)
 
     def predict2(features2):
         prediction2 = rf_model.predict(features2)
@@ -98,6 +101,9 @@ def hurricane_analysis():
 
     st.write('<P class="small-font">We will look at Atlantic Multidecadal Oscillation (AMO)\
               temperature anomaly influence on hurricanes for our area.</p?>', unsafe_allow_html=True)
+    st.markdown('Null hypothesis: AMO has no effect on hurricanes impacting our area. \
+                \n Alternate hypothesis: AMO anomalies are statistically significant in determining hurricane impacts\
+                to our area.')
     st.write('Below is a visual of the AMO region')
     st.image('Images/AMO_image.png', caption='Atlantic Multidecadal Oscillation (AMO) Region', use_column_width=True)
     st.markdown('Below is an image showing the AMO anomalies with the trend of hurricanes since 1850. \
@@ -106,6 +112,11 @@ def hurricane_analysis():
     st.markdown('Below is an image showing the AMO anomalies with the trend of hurricanes since 1950.\
                 \n We see a significant relation between AMO anomalies and hurricanes impacting this area.')      
     st.image('Images/Hurricane_trends.png', caption='Area of Interest', use_column_width=True)
+    st.markdown('Below is an image showing the results of a logistic regression analysis. We can see that \
+                there is a significant change for positive AMO anomalies. P-value being .01! \
+                \n The top of the chart shows hurricanes that have happened and you can see how many \
+                are to the right of the 0/avg line.')      
+    st.image('Images/logistic_reg_chart.png', caption='LR Chart', use_column_width=True)
 
 
 def data_frame_demo():
@@ -116,8 +127,10 @@ def data_frame_demo():
         This data is provided to help leaders make decisions. 
 """
     )
-    st.markdown('Hurricanes moving up the coast (from S-SE) = Most Dangerous')
-    st.markdown('Hurricanes coming from SSW-West = Less Dangerous')
+    st.markdown('<p class="medium-font2">Hurricanes moving up the coast (from S-SE) = Most Dangerous</p?', unsafe_allow_html=True)
+    st.markdown('<p class="medium-font">Hurricanes coming from SSW-West = Less Dangerous</p?', unsafe_allow_html=True)
+    st.write('Breakdown on cyclones per month for our area')
+    st.image('Images/monthly_avg.png', caption='Monthly Breakdown', use_column_width=True)
     st.write('Historical tracks during August')
     st.image('Images/off_coast_aug.png', caption='August Cyclone Tracks', use_column_width=True)
     st.write('Historical tracks during September')
@@ -125,11 +138,22 @@ def data_frame_demo():
     st.write('Historical tracks during October')
     st.image('Images/off_coast_oct.png', caption='October Cyclone Tracks', use_column_width=True)
 
+def last_slide():
+    st.markdown('<p class="big-font">Information</p?', unsafe_allow_html=True)
+
+    st.markdown('Project completed by Andrew Tolson')
+    st.markdown('My github repository is at https://github.com/TolsonA/SpaceCoast-Hurricane-Prediction')
+    st.markdown('The image below is interesting if you find yourself wanting to learn more. \
+                \nMonsoon season in west Africa is very much related to hurricanes impacting \
+                the United States. This is closely related to the AMO anomalies.')
+    st.image('Images/W Sahel Wet vs Dry years.gif', caption='September Cyclone Tracks', use_column_width=True)
+
 page_names_to_funcs = {
     "Overview": intro,
     "Hurricane Analysis": hurricane_analysis,
     "Model Predictions": model_demo,
-    "Decision Matrix": data_frame_demo
+    "Decision Matrix": data_frame_demo,
+    "Information": last_slide
 }
 
 demo_name = st.sidebar.selectbox("Choose a demo", page_names_to_funcs.keys())
