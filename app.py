@@ -144,7 +144,7 @@ def last_slide():
     st.markdown('<p class="big-font">Information</p?', unsafe_allow_html=True)
 
     st.markdown('Project completed by Andrew Tolson')
-    st.markdown('<p class="medium-font">My github repository is at https://github.com/TolsonA/SpaceCoast-Hurricane-Prediction</p?')
+    st.markdown('<p class="medium-font">My github repository is at https://github.com/TolsonA/SpaceCoast-Hurricane-Prediction</p?', unsafe_allow_html=True)
     st.markdown('The image below is interesting if you find yourself wanting to learn more. \
                 \n Monsoon season in west Africa is very much related to hurricanes impacting \
                 the United States. This is closely related to the AMO anomalies.')
