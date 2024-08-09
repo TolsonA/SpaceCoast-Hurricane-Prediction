@@ -127,7 +127,7 @@ def data_frame_demo():
         This data is provided to help leaders make decisions. 
 """
     )
-    st.markdown('<p class="medium-font2">Hurricanes moving up the coast (from S-SE) = Most Dangerous \
+    st.markdown('<p class="medium-font2">Hurricanes coming from S-SE = Most Dangerous \
                 \n Evacuation should be considered</p?', unsafe_allow_html=True)
     st.markdown('<p class="medium-font">Hurricanes coming from SSW-West = Less Dangerous \
                 \n Evacuation may be more dangerous</p?', unsafe_allow_html=True)
@@ -144,9 +144,9 @@ def last_slide():
     st.markdown('<p class="big-font">Information</p?', unsafe_allow_html=True)
 
     st.markdown('Project completed by Andrew Tolson')
-    st.markdown('<p class="medium-font">My github repository is at https://github.com/TolsonA/SpaceCoast-Hurricane-Prediction<p?')
+    st.markdown('<p class="medium-font">My github repository is at https://github.com/TolsonA/SpaceCoast-Hurricane-Prediction</p?')
     st.markdown('The image below is interesting if you find yourself wanting to learn more. \
-                \nMonsoon season in west Africa is very much related to hurricanes impacting \
+                \n Monsoon season in west Africa is very much related to hurricanes impacting \
                 the United States. This is closely related to the AMO anomalies.')
     st.image('Images/W Sahel Wet vs Dry years.gif', caption='September Cyclone Tracks', use_column_width=True)
 
