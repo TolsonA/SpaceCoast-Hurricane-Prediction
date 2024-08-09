@@ -18,6 +18,7 @@ mdurl==0.1.2
 numpy==1.26.4
 packaging==24.1
 pandas==2.1.4
+patsy==0.5.6
 pillow==10.4.0
 protobuf==5.27.3
 pyarrow==17.0.0
@@ -29,9 +30,10 @@ referencing==0.35.1
 requests==2.32.3
 rich==13.7.1
 rpds-py==0.20.0
+scipy==1.14.0
 six==1.16.0
 smmap==5.0.1
-statsmodel==0.14.0
+statsmodels==0.14.2
 streamlit==1.36.0
 tenacity==8.5.0
 toml==0.10.2
