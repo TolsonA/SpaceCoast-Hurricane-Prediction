@@ -74,6 +74,14 @@
 
 ![alt text](Images/logistic_reg_chart.png)
 
+- The second model runs on AMO and sea level pressure for 3 stations.
+
+- Merida mean = 1013.46
+
+- Charleston mean = 1017.85
+
+- Nassau mean = 1015.03
+
 ## Historical Average Amount of All Cyclones per Month
 
 - The main foucs here is to show when we need to worry.

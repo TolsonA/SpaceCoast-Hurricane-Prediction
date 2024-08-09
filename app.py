@@ -73,10 +73,10 @@ if __name__ == "__main__":
         prediction2 = rf_model.predict(features2)
         return prediction2
     
-    st.sidebar.title('Sea Level Pressure Forecast Parameters')
-    feature3 = st.sidebar.slider("Nassau_slp", -1.46, 2.06, -0.14)
-    feature4 = st.sidebar.slider("Charleston_slp", -2.48, 1.97, -0.6)
-    feature5 = st.sidebar.slider("Meridia_slp", -3.43, 1.83, -0.3)
+    st.sidebar.title('Sea Level Pressure and AMO Parameters')
+    feature3 = st.sidebar.slider("Nassau_slp/avg 1015.03", -1.46, 2.06, -0.14)
+    feature4 = st.sidebar.slider("Charleston_slp/avg 1017.85", -2.48, 1.97, -0.6)
+    feature5 = st.sidebar.slider("Merida_slp/avg 1013.46", -3.43, 1.83, -0.3)
     feature6 = st.sidebar.slider("AMO_Annual", -0.50, 0.51, 0.34)
 
     features2 = [[feature3, feature4, feature5, feature6]]
